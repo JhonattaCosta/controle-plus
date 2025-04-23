@@ -18,7 +18,7 @@ public class ExpensesModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-    
+
     @Column(name = "description")
     @NonNull
     private String description;
@@ -30,6 +30,7 @@ public class ExpensesModel {
     private LocalDate date;
     @Column(name = "type")
     @NonNull
+    @Enumerated(EnumType.STRING)
     private EssentialType essentialType;
     @Column(name = "subcategory_id")
     @NonNull
