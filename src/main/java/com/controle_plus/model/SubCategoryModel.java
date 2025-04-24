@@ -32,7 +32,7 @@ public class SubCategoryModel {
     private Long userId;
 
     @OneToMany(mappedBy = "subCategory")
-    private List<ExpensesModel> espenses = new ArrayList<>();
+    private List<ExpensesModel> expenses = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -66,11 +66,11 @@ public class SubCategoryModel {
         this.userId = userId;
     }
 
-    public List<ExpensesModel> getEspenses() {
-        return espenses;
+    public List<ExpensesModel> getExpenses() {
+        return expenses;
     }
 
-    public void setEspenses(List<ExpensesModel> espenses) {
-        this.espenses = espenses;
+    public void setEspenses(List<ExpensesModel> expenses) {
+        this.expenses = expenses;
     }
 }
