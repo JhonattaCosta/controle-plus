@@ -9,7 +9,7 @@ import lombok.NonNull;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class SubCategory {
+public class SubCategoryModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
