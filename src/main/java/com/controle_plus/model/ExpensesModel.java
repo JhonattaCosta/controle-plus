@@ -7,6 +7,7 @@ import lombok.NonNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -32,9 +33,9 @@ public class ExpensesModel {
     @NonNull
     @Enumerated(EnumType.STRING)
     private EssentialType essentialType;
-    @ManyToMany
-    @Column(name = "subcategory_id")
-    private SubCategoryModel subCategoryModel;
+    @ManyToOne
+    @JoinTable(name = "subcategory_id")
+    private SubCategoryModel subCategory;
     @Column(name = "user_id")
     private Long UserId;
 
@@ -78,12 +79,12 @@ public class ExpensesModel {
         this.essentialType = essentialType;
     }
 
-    public SubCategoryModel getSubCategoryModel() {
-        return subCategoryModel;
+    public SubCategoryModel getSubCategory() {
+        return subCategory;
     }
 
-    public void setSubCategoryModel(SubCategoryModel subCategoryModel) {
-        this.subCategoryModel = subCategoryModel;
+    public void setSubCategory(SubCategoryModel subCategory) {
+        this.subCategory = subCategory;
     }
 
     public Long getUserId() {

@@ -6,6 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,35 +30,46 @@ public class SubCategoryModel {
     @Column(name = "user_id")
     private Long userId;
 
+    @OneToMany(mappedBy = "subCategory")
+    private List<ExpensesModel> espenses = new ArrayList<>();
+
     public Long getId() {
         return id;
-    }
-
-    public @NonNull String getName() {
-        return name;
-    }
-
-    public @NonNull EssentialType getEssentialType() {
-        return essentialType;
-    }
-
-    public Long getUserId() {
-        return userId;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
+    public @NonNull String getName() {
+        return name;
+    }
+
     public void setName(@NonNull String name) {
         this.name = name;
+    }
+
+    public @NonNull EssentialType getEssentialType() {
+        return essentialType;
     }
 
     public void setEssentialType(@NonNull EssentialType essentialType) {
         this.essentialType = essentialType;
     }
 
+    public Long getUserId() {
+        return userId;
+    }
+
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public List<ExpensesModel> getEspenses() {
+        return espenses;
+    }
+
+    public void setEspenses(List<ExpensesModel> espenses) {
+        this.espenses = espenses;
     }
 }
