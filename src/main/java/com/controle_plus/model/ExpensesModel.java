@@ -32,9 +32,9 @@ public class ExpensesModel {
     @NonNull
     @Enumerated(EnumType.STRING)
     private EssentialType essentialType;
+    @ManyToMany
     @Column(name = "subcategory_id")
-    @NonNull
-    private Long subcategoryId;
+    private SubCategoryModel subCategoryModel;
     @Column(name = "user_id")
     private Long UserId;
 
@@ -46,44 +46,44 @@ public class ExpensesModel {
         this.id = id;
     }
 
-    public String getDescription() {
+    public @NonNull String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(@NonNull String description) {
         this.description = description;
     }
 
-    public BigDecimal getAmount() {
+    public @NonNull BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(BigDecimal amount) {
+    public void setAmount(@NonNull BigDecimal amount) {
         this.amount = amount;
     }
 
-    public LocalDate getDate() {
+    public @NonNull LocalDate getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(@NonNull LocalDate date) {
         this.date = date;
     }
 
-    public EssentialType getEssentialType() {
+    public @NonNull EssentialType getEssentialType() {
         return essentialType;
     }
 
-    public void setEssentialType(EssentialType essentialType) {
+    public void setEssentialType(@NonNull EssentialType essentialType) {
         this.essentialType = essentialType;
     }
 
-    public Long getSubcategoryId() {
-        return subcategoryId;
+    public SubCategoryModel getSubCategoryModel() {
+        return subCategoryModel;
     }
 
-    public void setSubcategoryId(Long subcategoryId) {
-        this.subcategoryId = subcategoryId;
+    public void setSubCategoryModel(SubCategoryModel subCategoryModel) {
+        this.subCategoryModel = subCategoryModel;
     }
 
     public Long getUserId() {
