@@ -21,10 +21,4 @@ public interface ExpenseRepository extends JpaRepository <ExpensesModel, Long> {
 
     List<ExpensesModel> findByEssentialType (EssentialType essentialType);
 
-    @Query("SELECT e FROM ExpenseModel e WHERE MONTH(e.date) = :month")
-    List<ExpensesModel> findByMonth(@Param("month") int month);
-
-    @Query("SELECT e FROM ExpenseModel e WHERE YEAR(e.date) = : year")
-    List<ExpensesModel> findByYear(@Param("year") int year);
-
 }
