@@ -27,4 +27,35 @@ public class SubCategory {
     @Column(name = "user_id")
     private Long userId;
 
+    public Long getId() {
+        return id;
+    }
+
+    public @NonNull String getName() {
+        return name;
+    }
+
+    public @NonNull EssentialType getEssentialType() {
+        return essentialType;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(@NonNull String name) {
+        this.name = name;
+    }
+
+    public void setEssentialType(@NonNull EssentialType essentialType) {
+        this.essentialType = essentialType;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 }
