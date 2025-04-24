@@ -1,7 +1,30 @@
 package com.controle_plus.repository;
 
+import com.controle_plus.model.EssentialType;
 import com.controle_plus.model.ExpensesModel;
+import com.controle_plus.model.SubCategoryModel;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.List;
 
 public interface ExpenseRepository extends JpaRepository <ExpensesModel, Long> {
+
+    List<ExpensesModel> findBySubCategory(SubCategoryModel subCategoryModel);
+
+    List<ExpensesModel> findByAmountGreaterThan(BigDecimal amount);
+
+    List<ExpensesModel> findByAmountLessThan(BigDecimal amount);
+
+    List<ExpensesModel> findByEssentialType (EssentialType essentialType);
+
+    @Query("SELECT e FROM ExpenseModel e WHERE MONTH(e.date) = :month")
+    List<ExpensesModel> findByMonth(@Param("month") int month);
+
+    @Query("SELECT e FROM ExpenseModel e WHERE YEAR(e.date) = : year")
+    List<ExpensesModel> findByYear(@Param("year") int year);
+
 }
