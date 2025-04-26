@@ -5,7 +5,7 @@ import com.controle_plus.model.SubCategoryModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
-public interface SubcategoryRepository extends JpaRepository <SubCategoryModel, Long> {
+public interface SubCategoryRepository extends JpaRepository <SubCategoryModel, Long> {
 
     List<SubCategoryModel> findByNameContainingIgnoreCase(String name);
 
