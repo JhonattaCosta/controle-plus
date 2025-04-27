@@ -43,6 +43,19 @@ public class SubCategoryServiceController {
         }
     }
 
+    //Change
+    @PatchMapping("/change/{id}")
+    public ResponseEntity<?> changeSubCategory(@RequestBody SubCategoryDTO subCategoryDTO, @PathVariable Long id){
+        SubCategoryDTO subCategory = subCategoryService.listSubCategoryById(id);
+        if (subCategory != null){
+            return ResponseEntity.status(HttpStatus.ACCEPTED)
+                    .body(subCategoryService.changeSubCategory(subCategoryDTO,id));
+        }else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Sub-Caegory with id: " + id + " not found");
+        }
+    }
+
     //Delete
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteSubCategoryId (@PathVariable Long id){
