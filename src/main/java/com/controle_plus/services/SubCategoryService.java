@@ -42,6 +42,29 @@ public class SubCategoryService {
         return subCategoryById.map(subCategoryMapper::map).orElse(null);
     }
 
+    //Change
+    public SubCategoryDTO changeSubCategory(SubCategoryDTO subCategoryDTO, Long id){
+        Optional<SubCategoryModel> subCategoryExistingOpt = subCategoryRepository.findById(id);
+        if (subCategoryExistingOpt.isPresent()){
+            SubCategoryModel subCategoryExisting = subCategoryExistingOpt.get();
+            if(subCategoryDTO.getName() != null){
+                subCategoryExisting.setName(subCategoryDTO.getName());
+            }
+            if(subCategoryDTO.getEssentialType() != null){
+                subCategoryExisting.setEssentialType(subCategoryDTO.getEssentialType());
+            }
+            if (subCategoryDTO.getUserId() != null){
+                subCategoryExisting.setUserId(subCategoryDTO.getUserId());
+            }
+            if (subCategoryDTO.getExpenses() != null){
+                subCategoryExisting.setEspenses(subCategoryDTO.getExpenses());
+            }
+            SubCategoryModel subCategorySave = subCategoryRepository.save(subCategoryExisting);
+            return subCategoryMapper.map(subCategorySave);
+        }
+        return null;
+    }
+
     //Delete by id
     public void deleteSubCategoryById(Long id){
         subCategoryRepository.deleteById(id);
