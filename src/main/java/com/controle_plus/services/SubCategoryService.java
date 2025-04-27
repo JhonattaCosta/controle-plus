@@ -29,7 +29,7 @@ public class SubCategoryService {
     }
 
     //Find all
-    public List<SubCategoryDTO> listSubCategory(SubCategoryDTO subCategoryDTO){
+    public List<SubCategoryDTO> listSubCategory(){
         List<SubCategoryModel> listSubCategories = subCategoryRepository.findAll();
         return listSubCategories.stream()
                 .map(subCategoryMapper::map)
