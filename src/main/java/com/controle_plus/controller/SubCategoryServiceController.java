@@ -2,10 +2,10 @@ package com.controle_plus.controller;
 
 import com.controle_plus.mappers_dto.SubCategoryDTO;
 import com.controle_plus.services.SubCategoryService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/subcategory")
@@ -18,26 +18,43 @@ public class SubCategoryServiceController {
 
     //Create
     @PostMapping("/create")
-    public SubCategoryDTO createSubCategory (@RequestBody SubCategoryDTO subCategoryDTO){
-        return subCategoryService.createSubCategory(subCategoryDTO);
+    public ResponseEntity<String> createSubCategory (@RequestBody SubCategoryDTO subCategoryDTO){
+        SubCategoryDTO newSubCategory = subCategoryService.createSubCategory(subCategoryDTO);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body("Sub-Category created Successfully!");
     }
 
     //Find All
     @GetMapping("/list")
-    public List<SubCategoryDTO> listSubCategory (){
-        return subCategoryService.listSubCategory();
+    public ResponseEntity<List<SubCategoryDTO>> listSubCategory (){
+        List<SubCategoryDTO> subCategorys = subCategoryService.listSubCategory();
+        return ResponseEntity.ok(subCategorys);
     }
 
     //Find by ID
     @GetMapping("list/{id}")
-    public SubCategoryDTO listSubCategoryById(@PathVariable Long id) {
-        return subCategoryService.listSubCategoryById(id);
+    public ResponseEntity<?> listSubCategoryById(@PathVariable Long id) {
+        SubCategoryDTO subCategory = subCategoryService.listSubCategoryById(id);
+        if (subCategory != null){
+            return ResponseEntity.ok(subCategory);
+        }else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Sub-Category with id: " +id+ " not found!");
+        }
     }
 
     //Delete
     @DeleteMapping("/delete/{id}")
-    public void deleteSubCategoryId (@PathVariable Long id){
-        subCategoryService.deleteSubCategoryById(id);
+    public ResponseEntity<?> deleteSubCategoryId (@PathVariable Long id){
+        SubCategoryDTO subCategory = subCategoryService.listSubCategoryById(id);
+        if (subCategory != null){
+            subCategoryService.deleteSubCategoryById(id);
+            return ResponseEntity.ok("Sub-Category with id: "+ id + " was deleted Successfully!");
+        }else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Sub-Category with id: " +id+ " not found!");
+        }
+
     }
 
 
