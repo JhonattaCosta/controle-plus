@@ -9,10 +9,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/subcategory")
-public class SubCategoryServiceController {
+public class SubCategoryController {
     private final SubCategoryService subCategoryService;
 
-    public SubCategoryServiceController(SubCategoryService subCategoryService) {
+    public SubCategoryController(SubCategoryService subCategoryService) {
         this.subCategoryService = subCategoryService;
     }
 
